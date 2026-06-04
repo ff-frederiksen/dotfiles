@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 PACKAGES=(
     git curl wget unzip
     build-essential
     ripgrep fd-find
-    fzf
+    fzf zsh
 )
 sudo apt-get update
 sudo apt-get install -y "${PACKAGES[@]}"
+
+
+
+ln -sf "$(which fdfind)" ~/.local/bin/fd
