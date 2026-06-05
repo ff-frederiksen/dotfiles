@@ -6,18 +6,18 @@ PACKAGES=(
     git curl wget unzip
     build-essential
     ripgrep fd-find
-    fzf zsh
+    fzf zsh wl-clipboard
 )
 sudo apt-get update
 sudo apt-get install -y "${PACKAGES[@]}"
 
 
 # Change shell to ZSH
-#target_shell="$(command -v zsh)"
-#current_shell="$(getent passwd "$USER" | cut -d: -f7)"
-#if [[ "$current_shell" != "$target_shell" ]]; then
-#    sudo chsh -s "$target_shell" "$USER"
-#fi
+target_shell="$(command -v zsh)"
+current_shell="$(getent passwd "$USER" | cut -d: -f7)"
+if [[ "$current_shell" != "$target_shell" ]]; then
+    sudo chsh -s "$target_shell" "$USER"
+fi
 
 
 ln -sf "$(which fdfind)" ~/.local/bin/fd
