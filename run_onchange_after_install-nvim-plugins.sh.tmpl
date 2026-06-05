@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# lock: {{ include "dot_config/nvim/lazy-lock.json" | sha256sum }}
+set -euo pipefail
+
+"$HOME/.local/bin/nvim" --headless "+Lazy! restore" +qa
