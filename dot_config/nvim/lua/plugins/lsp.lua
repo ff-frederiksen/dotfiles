@@ -8,7 +8,7 @@ return {
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "bashls" },
+				ensure_installed = { "lua_ls", "bashls", "ts_ls" },
 				automatic_enable = false,
 			})
 			vim.lsp.config("lua_ls", {
@@ -21,7 +21,7 @@ return {
 				},
 			})
 
-			vim.lsp.enable("lua_ls")
+			vim.lsp.enable({ "lua_ls", "bashls", "ts_ls" })
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(ev)
