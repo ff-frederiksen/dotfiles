@@ -8,7 +8,7 @@ return {
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "bashls", "ts_ls" },
+				ensure_installed = { "lua_ls", "bashls", "ts_ls", "angularls" },
 				automatic_enable = false,
 			})
 			vim.lsp.config("lua_ls", {
@@ -21,10 +21,14 @@ return {
 				},
 			})
 
-			vim.lsp.enable({ "lua_ls", "bashls", "ts_ls" })
+			vim.lsp.enable({ "lua_ls", "bashls", "ts_ls", "angularls" })
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(ev)
+					local client = vim.lsp.get_client_by_id(ev.data.client_id)
+					if client and client.name == "angularls" then
+						client.server_capabilities.renameProvider = false
+					end
 					local map = function(k, fn, d)
 						vim.keymap.set("n", k, fn, { buffer = ev.buf, desc = d })
 					end

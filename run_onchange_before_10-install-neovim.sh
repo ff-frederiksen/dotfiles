@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-NVIM_VERSION="v0.12.2"
+NVIM_VERSION="v0.11.7"
 ARCH="linux-x86_64"
 OPT_DIR="$HOME/.local/opt/nvim"
 TARBALL="nvim-${ARCH}.tar.gz"
