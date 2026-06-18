@@ -11,6 +11,11 @@ return {
 				ensure_installed = { "lua_ls", "bashls", "ts_ls", "angularls" },
 				automatic_enable = false,
 			})
+
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+			})
+
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {

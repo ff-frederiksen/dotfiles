@@ -1,17 +1,28 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "master",
-    build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = {
-                "lua", "vim", "vimdoc",
-                "c_sharp", "typescript", "javascript",
-                "html", "css", "json", "bash", "markdown",
-            },
-            highlight = { enable = true },
-            indent = { enable = true },
-        })
-    end,
+	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
+	build = ":TSUpdate",
+	lazy = false,
+	config = function()
+		require("nvim-treesitter").install({
+			"lua",
+			"vim",
+			"vimdoc",
+			"c_sharp",
+			"typescript",
+			"javascript",
+			"tsx",
+			"html",
+			"css",
+			"json",
+			"bash",
+			"markdown",
+			"markdown_inline",
+		})
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				pcall(vim.treesitter.start)
+			end,
+		})
+	end,
 }
