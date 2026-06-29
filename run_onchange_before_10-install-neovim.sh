@@ -2,13 +2,12 @@
 
 set -euo pipefail
 
-NVIM_VERSION="v0.11.7"
+NVIM_VERSION="v0.12.3"
 ARCH="linux-x86_64"
 OPT_DIR="$HOME/.local/opt/nvim"
 TARBALL="nvim-${ARCH}.tar.gz"
 URL="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/${TARBALL}"
 
-# Idempotent: skip if already at the pinned version.
 current="$("$OPT_DIR/bin/nvim" --version 2>/dev/null |
     head -1 | awk '{print $2}' || true)"
 if [[ "$current" == "$NVIM_VERSION" ]]; then

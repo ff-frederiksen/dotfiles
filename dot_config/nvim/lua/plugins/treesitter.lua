@@ -1,27 +1,40 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	branch = "main",
-	build = ":TSUpdate",
 	lazy = false,
+	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter").install({
+		local parsers = {
 			"lua",
 			"vim",
 			"vimdoc",
-			"c_sharp",
-			"typescript",
-			"javascript",
-			"tsx",
-			"html",
-			"css",
-			"json",
+			"query",
 			"bash",
 			"markdown",
 			"markdown_inline",
-		})
+			"json",
+			"yaml",
+			"html",
+			"css",
+			"scss",
+			"javascript",
+			"typescript",
+			"tsx",
+			"python",
+			"c_sharp",
+			"dockerfile",
+			"gitignore",
+			"gitcommit",
+			"diff",
+			"toml",
+		}
+
+		require("nvim-treesitter").install(parsers)
+
 		vim.api.nvim_create_autocmd("FileType", {
-			callback = function()
-				pcall(vim.treesitter.start)
+			pattern = "*",
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
 			end,
 		})
 	end,

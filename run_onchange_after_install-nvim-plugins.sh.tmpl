@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+
+export PATH="$HOME/.local/bin:$PATH"
+
 # lock: {{ include "dot_config/nvim/lazy-lock.json" | sha256sum }}
 set -euo pipefail
 
