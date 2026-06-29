@@ -6,6 +6,7 @@ return {
 			"prettierd",
 			"prettier",
 			"angular-language-server",
+			"roslyn",
 		},
 	},
 }
